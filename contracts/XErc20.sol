@@ -6,21 +6,13 @@ import "./base/CustomChanIbcApp.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract XErc20 is CustomChanIbcApp, ERC20 {
-    string private _tokenName;
-    string private _tokenSymbol;
-    uint256 private _tokenSupply;
-
     constructor(
         IbcDispatcher _dispatcher,
         string memory tokenName_,
         string memory tokenSymbol_,
         uint256 tokenSupply_
-    ) ERC20("TestXERC20", "TESTX") CustomChanIbcApp(_dispatcher) {
-        _mint(msg.sender, 1000000000000000000000000000);
-
-        _tokenName = tokenName_;
-        _tokenSymbol = tokenSymbol_;
-        _tokenSupply = tokenSupply_;
+    ) ERC20(tokenName_, tokenSymbol_) CustomChanIbcApp(_dispatcher) {
+        _mint(msg.sender, tokenSupply_);
     }
 
     // IBC logic
