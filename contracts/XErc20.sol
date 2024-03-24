@@ -6,10 +6,21 @@ import "./base/CustomChanIbcApp.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract XErc20 is CustomChanIbcApp, ERC20 {
+    string private _tokenName;
+    string private _tokenSymbol;
+    uint256 private _tokenSupply;
+
     constructor(
-        IbcDispatcher _dispatcher
+        IbcDispatcher _dispatcher,
+        string memory tokenName_,
+        string memory tokenSymbol_,
+        uint256 tokenSupply_
     ) ERC20("TestXERC20", "TESTX") CustomChanIbcApp(_dispatcher) {
         _mint(msg.sender, 1000000000000000000000000000);
+
+        _tokenName = tokenName_;
+        _tokenSymbol = tokenSymbol_;
+        _tokenSupply = tokenSupply_;
     }
 
     // IBC logic
@@ -29,7 +40,7 @@ contract XErc20 is CustomChanIbcApp, ERC20 {
         uint64 timeoutTimestamp = uint64(
             (block.timestamp + timeoutSeconds) * 1000000000
         );
-
+        
         // calling the Dispatcher to send the packet
         dispatcher.sendPacket(channelId, payload, timeoutTimestamp);
     }
@@ -41,9 +52,6 @@ contract XErc20 is CustomChanIbcApp, ERC20 {
         uint256 amount
     ) external {
         require(from == msg.sender, "Only from address");
-
-        // burn tokens
-        _burn(from, amount);
 
         // send packet
         bytes memory payload = abi.encode(from, to, amount);
@@ -60,6 +68,7 @@ contract XErc20 is CustomChanIbcApp, ERC20 {
         IbcPacket memory packet
     ) external override onlyIbcDispatcher returns (AckPacket memory ackPacket) {
         recvedPackets.push(packet);
+
         (address from, address to, uint256 amount) = abi.decode(
             packet.data,
             (address, address, uint256)
@@ -87,6 +96,9 @@ contract XErc20 is CustomChanIbcApp, ERC20 {
             ack.data,
             (address, address, uint256)
         );
+
+        // burn tokens
+        _burn(from, amount);
     }
 
     /**

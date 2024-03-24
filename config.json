@@ -7,40 +7,40 @@
   "isUniversal": false,
   "createChannel": {
     "srcChain": "optimism",
-    "srcAddr": "0x254Cb14300b28247369C3702A0318dAAc0e1Cc80",
+    "srcAddr": "0xB5a774B3A9AedB237751220dDe192480cCAeF3E6",
     "dstChain": "base",
-    "dstAddr": "0xa9b71B8A71e752F5cB5400A774Ac9Ec2e8CB96De",
+    "dstAddr": "0xB5a774B3A9AedB237751220dDe192480cCAeF3E6",
     "version": "1.0",
     "ordering": 0,
     "fees": false
   },
   "sendPacket": {
     "optimism": {
-      "portAddr": "0x254Cb14300b28247369C3702A0318dAAc0e1Cc80",
-      "channelId": "channel-37466",
+      "portAddr": "0xB5a774B3A9AedB237751220dDe192480cCAeF3E6",
+      "channelId": "channel-38284",
       "timeout": 36000
     },
     "base": {
-      "portAddr": "0xa9b71B8A71e752F5cB5400A774Ac9Ec2e8CB96De",
-      "channelId": "channel-37467",
+      "portAddr": "0xB5a774B3A9AedB237751220dDe192480cCAeF3E6",
+      "channelId": "channel-38285",
       "timeout": 36000
     }
   },
   "bridgeTokens": {
     "optimism": {
-      "portAddr": "0x254Cb14300b28247369C3702A0318dAAc0e1Cc80",
-      "channelId": "channel-37466",
+      "portAddr": "0xB5a774B3A9AedB237751220dDe192480cCAeF3E6",
+      "channelId": "channel-38284",
       "timeout": 36000,
-      "fromAddress": "0x804bF80acad1e5289903E204c86D0e219bED4d3D",
-      "toAddress": "0x804bF80acad1e5289903E204c86D0e219bED4d3D",
+      "fromAddress": "0x47BF8eA42AE606EFe9f5b3Bef6ac212977A83e89",
+      "toAddress": "0x47BF8eA42AE606EFe9f5b3Bef6ac212977A83e89",
       "amount": "1000000000000000000"
     },
     "base": {
-      "portAddr": "0xa9b71B8A71e752F5cB5400A774Ac9Ec2e8CB96De",
-      "channelId": "channel-37467",
+      "portAddr": "0xB5a774B3A9AedB237751220dDe192480cCAeF3E6",
+      "channelId": "channel-38285",
       "timeout": 36000,
-      "fromAddress": "0x804bF80acad1e5289903E204c86D0e219bED4d3D",
-      "toAddress": "0x804bF80acad1e5289903E204c86D0e219bED4d3D",
+      "fromAddress": "0x47BF8eA42AE606EFe9f5b3Bef6ac212977A83e89",
+      "toAddress": "0x47BF8eA42AE606EFe9f5b3Bef6ac212977A83e89",
       "amount": "1000000000000000000"
     }
   },
