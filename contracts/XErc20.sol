@@ -37,6 +37,7 @@ contract XErc20 is CustomChanIbcApp, ERC20 {
         dispatcher.sendPacket(channelId, payload, timeoutTimestamp);
     }
 
+    // Bridge only two chain
     function bridgeTokens(
         bytes32 channelId,
         address from,
@@ -48,6 +49,22 @@ contract XErc20 is CustomChanIbcApp, ERC20 {
         // send packet
         bytes memory payload = abi.encode(from, to, amount);
         sendPacket(channelId, 10 hours, payload);
+    }
+
+    // Bridge multi chains
+    function bridgeTokensMulti(
+        bytes32[] memory channelId,
+        address from,
+        address to,
+        uint256[] memory amount
+    ) external {
+        require(from == msg.sender, "Only from address");
+
+        for(uint256 i = 0; i< channelId.length; i++) {
+            // send packet
+            bytes memory payload = abi.encode(from, to, amount[i]);
+            sendPacket(channelId[i], 10 hours, payload);
+        }
     }
 
     /**

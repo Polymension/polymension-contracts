@@ -29,12 +29,22 @@ set-contracts CHAIN CONTRACT_TYPE UNIVERSAL='true':
     echo "Updating config.json with contract type..."
     node scripts/private/_set-contracts-config.js {{CHAIN}} {{CONTRACT_TYPE}} {{UNIVERSAL}}
 
+# Multi bridges
+set-multi-contracts CHAIN CONTRACT_TYPE UNIVERSAL='true':
+    echo "Updating config.json with contract type..."
+    node scripts/private/_set-multi-contracts-config.js {{CHAIN}} {{CONTRACT_TYPE}} {{UNIVERSAL}}
+
 # Deploy the contracts in the /contracts folder using Hardhat and updating the config.json file
 # The source and destination arguments are REQUIRED;
 # Usage: just deploy [source] [destination]
 deploy SOURCE DESTINATION:
         echo "Deploying contracts with Hardhat..."
         node scripts/private/_deploy-config.js {{SOURCE}} {{DESTINATION}}
+
+# Deploy contracts for multi bridges
+deploy-multi SOURCE DESTINATION DESTINATION2:
+        echo "Deploying contracts with Hardhat..."
+        node scripts/private/_deploy-config.js {{SOURCE}} {{DESTINATION}} {{DESTINATION2}}
 
 # Run the sanity check script to verify that configuration (.env) files match with deployed contracts' stored values
 # Usage: just sanity-check
@@ -95,6 +105,14 @@ do-it-bridge:
     just create-channel
     just bridge-tokens optimism
     echo "You've done it!"
+
+do-it-multi-bridge:
+    echo "Running the full E2E flow..."
+    just set-multi-contracts optimism XErc20 false
+    just set-multi-contracts base XErc20 false
+    just set-multi-contracts sepolia XErc20 false
+    just deploy-multi optimism base sepolia
+    
 
 # Clean up the environment by removing the artifacts and cache folders and running the forge clean command
 # Usage: just clean

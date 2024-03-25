@@ -14,7 +14,7 @@ const chain = process.argv[2];
 const contractType = process.argv[3];
 const universalBoolean = process.argv[4].trim().toLowerCase();
 
-if (chain !== "optimism" && chain !== "base") {
+if (chain !== "optimism" && chain !== "base" && chain !== "sepolia") {
   console.error("❌ Incorrect chain value. Usage: node set-contracts-config.js <chain> <contractType> <isUniversal>");
   process.exit(1);
 }
