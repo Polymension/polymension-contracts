@@ -1,42 +1,39 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("@nomicfoundation/hardhat-foundry");
+require("@nomicfoundation/hardhat-verify");
 
-require('dotenv').config();
+require("dotenv").config();
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   solidity: {
-    version: '0.8.23',
+    version: "0.8.23",
     settings: {
       optimizer: {
         enabled: true,
-        runs: 200 // Optimize for a typical number of runs
-      }
-    }    
+        runs: 200, // Optimize for a typical number of runs
+      },
+    },
   },
   networks: {
     // for Base testnet
-    'base': {
-      url: 'https://sepolia.base.org',
-      accounts: [
-        process.env.PRIVATE_KEY_1
-      ],
+    base: {
+      url: "https://sepolia.base.org",
+      accounts: [process.env.PRIVATE_KEY_1],
     },
     // for OP testnet
-    'optimism': {
-      url: 'https://sepolia.optimism.io',
-      accounts: [
-        process.env.PRIVATE_KEY_1
-      ],
-    },    
+    optimism: {
+      url: "https://sepolia.optimism.io",
+      accounts: [process.env.PRIVATE_KEY_1],
+    },
   },
-  defaultNetwork: 'optimism',
+  defaultNetwork: "optimism",
   paths: {
-    sources: './contracts',
-    tests: './test',
-    cache: './cache',
-    artifacts: './artifacts',
-    libraries: './lib',
+    sources: "./contracts",
+    tests: "./test",
+    cache: "./cache",
+    artifacts: "./artifacts",
+    libraries: "./lib",
   },
   etherscan: {
     apiKey: {
@@ -50,7 +47,7 @@ module.exports = {
         urls: {
           apiURL: "https://base-sepolia.blockscout.com/api",
           browserURL: "https://base-sepolia.blockscout.com",
-        }
+        },
       },
       {
         network: "optimism",
@@ -58,9 +55,8 @@ module.exports = {
         urls: {
           apiURL: "https://optimism-sepolia.blockscout.com/api",
           browserURL: "https://optimism-sepolia.blockscout.com",
-        }
-      }
-    ]
+        },
+      },
+    ],
   },
 };
-
